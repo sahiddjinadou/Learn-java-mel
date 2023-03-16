@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starting with react</title>
+    <script src="assets/js/react.development.js"></script>
+    <script src="assets/js/react-dom.development.js"></script>
+    <script src="assets/js/babel.min.js"></script>
+
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        //Methode POO
+        class Hello extends React.Component {
+            render() {
+                const tab = ['a', 'b', 'c', 'd'];
+                return (
+                <div className="heading" >
+                    {tab.map((el, i) =>{
+                        return (
+                            <p key={i}>{el}</p>
+                        )
+                    })}
+
+                    <p>{this.props.subtitle}</p>
+                    
+                    </div>
+            );
+
+            }
+        }
+        //Methode procedurale
+        // const Hello = (props) => {
+        //     const tab = ['a', 'b', 'c', 'd'];
+        //     return (
+        //         <div className="heading" >
+        //             {tab.map((el, i) =>{
+        //                 return (
+        //                     <p key={i}>{el}</p>
+        //                 )
+        //             })}
+        //             <h1>{props.message}</h1>
+                    
+        //             </div>
+        //     );
+        // }
+
+        //rendu dans le DOM
+        ReactDOM.render(
+            <Hello message="Starting with react" subtitle="React js/Iteration througth an array"/>,
+            document.getElementById('root')
+        )
+
+    </script>
+</body>
+</html>

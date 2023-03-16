@@ -1,0 +1,39 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.forList {
+    list-style: none;
+    border: 2px inset orangered;
+    margin: 20px;
+    padding: 10px;
+
+}
+
+.forList>div {
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid orange;
+    margin-block: 5px;
+    padding: 5px;
+
+}
+
+.forList>div>li {
+    font-size: 1.5rem;
+}
+
+/* .forList>div>div {
+    border: 2px solid red;
+} */
+
+/* .forList>div>li>button {
+    justify-self: end;
+    border: 1px solid;
+} */
+
+input[type="checkbox"] {
+    margin-inline: 20px;
+}

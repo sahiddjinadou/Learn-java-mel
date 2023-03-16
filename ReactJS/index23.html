@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <!--  Librairie react -->
+    <script src="assets/JS/react.development.js"></script>
+    <script src="assets/JS/react-dom.development.js"></script>
+    <!-- Librairie Babel -->
+    <script src="assets/JS/babel.min.js"></script>
+
+</head>
+<body>
+
+    <div id="root"></div>
+    
+    <script type="text/babel">
+
+        class MyClock extends React.Component {
+            constructor(props){
+                super(props)
+                this.state = {
+                    date: new Date()
+                }
+            }
+
+            componentDidMount() {
+                setInterval(() => {
+                    this.time()
+                }, 1000)
+            }
+
+            time() {
+                this.setState({
+                    date: new Date()
+                })
+            }
+
+            render(){
+                // console.log(this.state.date)
+                return(
+
+                    <ShowClock value = {this.state.date}/>
+                )
+            }
+        }
+
+        class ShowClock extends React.Component {
+
+            render(){
+                return(
+                    <div>
+                        <h1>Today is</h1>
+                        <p>{this.props.value.toDateString()}</p>
+                        <p>{this.props.value.getHours()}h : {this.props.value.getMinutes()}min : {this.props.value.getSeconds()}s</p>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<MyClock/>, document.getElementById('root'));
+    </script>
+</body>
+</html>

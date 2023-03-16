@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REACT PROJECT</title>
+    <!--  Librairie react -->
+    <script src="assets/JS/react.development.js"></script>
+    <script src="assets/JS/react-dom.development.js"></script>
+    <!-- Librairie Babel -->
+    <script src="assets/JS/babel.min.js"></script>
+    <style>
+        .heading {
+            color: purple;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="root"></div>
+
+   <script type="text/babel">
+
+    class App extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = { // data: {}
+                message: [
+                    "Message 1",
+                    "Message 2",
+                    "Message 3",
+                    "Message 4",
+                    "Message 5",
+                ]
+            }
+        }
+        
+        render() {
+            return (
+                // <div v-bind:message="message" >{{}}
+                <div>
+                    <Messages value={this.state.message} />
+                </div>
+            )
+        }
+        
+        
+    }
+
+    class Messages extends React.Component {
+        render() {
+            return (
+                this.props.value.map((message, index) => {
+                    // JavaScript & XML
+                    // return <button key={index} className="message">{message}</button>
+                    return <Message key={index} msgAffiche={message} />
+                })
+            );
+        }
+    }
+    
+    class Message extends React.Component {
+        
+        render() {
+            return (
+                <div>
+                    <p>=====Début Composant====</p>
+                    <p>{this.props.msgAffiche}</p>
+                    <p>=====Fin Composant====</p>
+                </div>
+            );
+        }
+    }
+
+    ReactDOM.render(<App />, document.getElementById("root"));
+
+   </script> 
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  Librairie react -->
+    <script src="assets/JS/react.development.js"></script>
+    <script src="assets/JS/react-dom.development.js"></script>
+    <!-- Librairie Babel -->
+    <script src="assets/JS/babel.min.js"></script>
+    
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+
+    <script type="text/babel">
+
+        class Messages extends React.Component {
+            constructor(props){
+                super(props);
+            }
+
+            render() {
+                return(
+                    this.props.Allmsg.map((element, i) =>{
+                     return(
+                        <Message value={element.message} />
+                     )
+                   })
+               
+                )
+            }
+        }
+
+        class Message extends React.Component{
+
+            render(){
+                return(
+                    <p>{this.props.value}</p>
+                )
+            }
+        }
+
+        class App extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    Messages: [
+                        { message: "React JS" },
+                        { message: "React Native" },
+                        { message: "Angular" },
+                        { message: "Symfony" },
+                        { message: "MongoDB" },
+                    ]
+                }
+            }
+
+            render() { 
+                return(
+                    <Messages Allmsg = {this.state.Messages}/>
+                )
+            }
+        }
+
+
+
+        ReactDOM.render(
+            <App/>,
+            document.getElementById('root')
+        )
+    </script>
+</body>
+
+</html>

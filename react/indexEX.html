@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--  Librairie react -->
+    <script src="assets/JS/react.development.js"></script>
+    <script src="assets/JS/react-dom.development.js"></script>
+    <!-- Librairie Babel -->
+    <script src="assets/JS/babel.min.js"></script>
+
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        class MyClock extends React.Component {
+            constructor(props) {
+                super(props)
+
+
+            }
+            componentWillUnmount() {
+                clearInterval(this.props.id);
+                // alert("the component");
+                console.log("unmount");
+
+              
+            }
+            render() {
+
+                return (
+
+                    <p>{this.props.heure} (H) {this.props.minute} (M) {this.props.seconde} (S)</p>
+
+                )
+            }
+        }
+
+
+        class App extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    display: true,
+                    id: null,
+                    seconde: 0,
+                    minute: 59,
+                    heure: 22
+                }
+            }
+
+            componentDidMount() {
+                this.state.id = setInterval(
+                    () => this.showClock(),
+                    1000
+                )
+            }
+
+            showClock() {
+                this.setState({
+                    seconde: this.state.seconde + 1
+                });
+
+
+                if (this.state.seconde ==5) {
+                    this.setState({
+                        display: false
+                    })
+                }
+
+                if (this.state.seconde === 60) {
+                    this.setState({
+                        seconde: 0,
+                        minute: this.state.minute + 1
+                    });
+                }
+
+                if (this.state.minute === 60) {
+                    this.setState({
+                        minute: 0,
+                        heure: this.state.heure + 1
+                    });
+                }
+
+                if (this.state.heure === 24) {
+                    this.setState({
+                        heure: 0
+                    })
+                }
+
+
+            }
+
+
+            render() {
+                let comp;
+                if (this.state.display) {
+
+                    comp = <MyClock id={this.state.id} heure={this.state.heure} minute={this.state.minute} seconde={this.state.seconde} />
+
+                };
+                return (
+                    <div>
+                        {comp}
+                    </div>
+                );
+
+            }
+        }
+
+        // class App extends React.Component {
+        //     state = { display: true };
+        //     delete = () => {
+        //         this.setState({ display: false });
+        //     };
+
+        //     render() {
+        //         let comp;
+        //         if (this.state.display) {
+        //             comp = <ComponentOne />;
+        //         }
+        //         return (
+        //             <div>
+        //                 {comp}
+        //                 <button onClick={this.delete}>
+        //                     Delete the component
+        //                 </button>
+        //             </div>
+        //         );
+        //     }
+        // }
+
+        ReactDOM.render(
+            <App />,
+            document.getElementById('root')
+        )
+    </script>
+</body>
+
+</html>

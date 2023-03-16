@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REACT PROJECT</title>
+    <!--  Librairie react -->
+    <script src="assets/JS/react.development.js"></script>
+    <script src="assets/JS/react-dom.development.js"></script>
+    <!-- Librairie Babel -->
+    <script src="assets/JS/babel.min.js"></script>
+    <style>
+        .heading {
+            color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // const Hello = (props) => {
+        // // props.name = "Autre chose" 
+
+        //   return (
+        //     <div>
+        //             <h1>Hello, {props.name}</h1>
+        //             <h2>How are you? {props.name}</h2>
+        //     </div>
+        //   )
+// }
+
+    class HelloReact extends React.Component{
+        // constructor(props){
+        //     super(props);
+        // }
+
+        render() {
+            return (
+                <h1 className="heading">{this.props.name}</h1>
+            )
+        }
+    }
+
+    ReactDOM.render(
+        // attribut cle/valeur == props
+        <HelloReact  name="Hello React" />,
+        document.getElementById('root')
+    );
+        
+        
+    // ReactDOM.render(
+
+    //     <Hello name="Alan" />,
+        
+    //     // <Tableau />,
+    //     document.getElementById('root')
+    // );
+
+    </script>
+</body>
+
+</html>
